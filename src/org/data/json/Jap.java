@@ -8,6 +8,8 @@ import java.util.*;
 
 public class Jap extends HashMap<String, Object> {
     
+    
+    
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder("{");
