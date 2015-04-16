@@ -16,6 +16,9 @@ public class Jap extends HashMap<String, Object> {
         super(map);
     }
     
+    public Jap(String s) {
+        
+    }
     
     @Override
     public String toString() {
