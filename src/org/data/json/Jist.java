@@ -9,4 +9,15 @@ import java.util.*;
 public class Jist extends ArrayList<Object> {
     
     
+    @Override
+    public String toString() {
+        StringBuilder ans = new StringBuilder().append("[");
+        for(Object o : this) {
+            if(!(o instanceof CharSequence)) ans.append(o);
+            else ans.append("\"").append(o).append("\"");
+            ans.append(",");
+        }
+        if(ans.length() > 1) ans.deleteCharAt(ans.length()-1);
+        return ans.append("]").toString();
+    }
 }
