@@ -13,7 +13,7 @@ public class Jist extends ArrayList<Object> {
         super();
     }
     
-    public Jist(Collection coll) {
+    public Jist(Collection<? extends Object> coll) {
         super(coll);
     }
     
@@ -29,7 +29,7 @@ public class Jist extends ArrayList<Object> {
             else ans.append("\"").append(o).append("\"");
             ans.append(",");
         }
-        if(ans.length() > 1) ans.deleteCharAt(ans.length()-1);
+        if(ans.length() > 1) ans.setLength(ans.length()-1);
         return ans.append("]").toString();
     }
 }
