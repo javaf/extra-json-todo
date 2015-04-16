@@ -1,2 +1,3 @@
-# java-json
-JSON reader for Java
+# java-jap
+
+minimal json parser for java.
