@@ -17,10 +17,6 @@ public class Jist extends ArrayList<Object> {
         super(coll);
     }
     
-    public Jist(int size) {
-        super(size);
-    }
-    
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder().append("[");

@@ -8,6 +8,13 @@ import java.util.*;
 
 public class Jap extends HashMap<String, Object> {
     
+    public Jap() {
+        super();
+    }
+    
+    public Jap(Map<? extends String, ? extends Object> map) {
+        super(map);
+    }
     
     
     @Override
