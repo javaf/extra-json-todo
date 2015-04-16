@@ -15,10 +15,11 @@ public class Jap extends HashMap<String, Object> {
         StringBuilder ans = new StringBuilder("{");
         for(Map.Entry<String, Object> o : entrySet()) {
             ans.append('\"').append(o.getKey()).append("\":");
-            ans.append(o.getValue()).append(",");
+            if(!(o.getValue() instanceof CharSequence)) ans.append(o.getValue());
+            else ans.append("\"").append(o.getValue()).append("\"");
+            ans.append(",");
         }
-        if(ans.length() > 1) ans.deleteCharAt(ans.length()-1);
-        ans.append("}");
-        return ans.toString();
+        if(ans.length() > 1) ans.setLength(ans.length()-1);
+        return ans.append("}").toString();
     }
 }
