@@ -9,6 +9,18 @@ import java.util.*;
 public class Jist extends ArrayList<Object> {
     
     
+    public Jist() {
+        super();
+    }
+    
+    public Jist(Collection coll) {
+        super(coll);
+    }
+    
+    public Jist(int size) {
+        super(size);
+    }
+    
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder().append("[");
