@@ -8,7 +8,7 @@ import java.util.*;
 
 // suggest json -> jap / jmap
 // suggest jsonlist -> jist / jlist
-public class Json extends HashMap<String, Object> {
+public class Jap extends HashMap<String, Object> {
     
     @Override
     public String toString() {
