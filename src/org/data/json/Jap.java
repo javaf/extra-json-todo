@@ -8,6 +8,10 @@ import java.util.*;
 
 public class Jap extends HashMap<String, Object> {
     
+    // data
+    Extract unparsed;
+    
+    
     public Jap() {
         super();
     }
