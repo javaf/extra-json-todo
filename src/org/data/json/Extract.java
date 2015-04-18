@@ -10,12 +10,17 @@ class Extract implements CharSequence {
 
     // data
     Object source;
-    int offset;
-    int length;
+    int start, end;
+    
+    public Extract(Object source, int start, int end) {
+        this.source = source;
+        this.start = start;
+        this.end = end;
+    }
     
     @Override
     public int length() {
-        return length;
+        return end-start;
     }
 
     public char take(int off) throws IOException {
@@ -44,6 +49,6 @@ class Extract implements CharSequence {
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        return null;
+        return new Extract(source, start, end);
     }
 }
