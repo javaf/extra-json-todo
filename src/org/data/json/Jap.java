@@ -10,13 +10,13 @@ public class Jap extends HashMap<String, Object> {
     
     // data
     Extract unparsed;
-    
+    // additions, deletions
     
     public Jap() {
         super();
     }
     
-    public Jap(Map<? extends String, ? extends Object> map) {
+    public Jap(Map<String, ?> map) {
         super(map);
     }
     
