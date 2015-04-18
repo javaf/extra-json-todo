@@ -5,41 +5,24 @@ package org.data.json;
 import java.io.*;
 
 
-
+// String, StringBuilder/Buffer, File, InputStream
+// StringBuilder/Buffer, File, OutputStream
 class Extract implements CharSequence {
-
-    // data
-    Object source;
-    int start, end;
     
-    public Extract(Object source, int start, int end) {
-        this.source = source;
-        this.start = start;
-        this.end = end;
+    // data
+    String val;
+    Object obj;
+    int off, len;
+    
+    public Extract(Object obj, int off, int len) {
+        this.obj = obj;
+        this.off = off;
+        this.len = len;
     }
     
     @Override
     public int length() {
-        return end-start;
-    }
-
-    public char take(int off) throws IOException {
-        if(source instanceof CharSequence) {
-            offset += off+1;
-            length -= off+1;
-            return ((CharSequence)source).charAt(offset);
-        }
-        BufferedReader bsrc = (BufferedReader)source;
-        if(off > 0) bsrc.skip(off);
-        return (char)bsrc.read();
-    }
-    
-    public String take(int off, int len) {
-        if(source instanceof CharSequence) {
-            offset += off+1;
-            length -= off+1;
-        }
-        return null;
+        return len;
     }
 
     @Override
@@ -48,7 +31,15 @@ class Extract implements CharSequence {
     }
 
     @Override
-    public CharSequence subSequence(int start, int end) {
-        return new Extract(source, start, end);
+    public Extract subSequence(int start, int end) {
+        return new Extract(obj, off+start, off+end-start);
+    }
+    
+    @Override
+    public String toString() {
+        if(val != null) return val;
+        if(obj instanceof CharSequence) val = ((CharSequence)obj).subSequence(off, off+len).toString();
+        File a;
+        return null;
     }
 }
