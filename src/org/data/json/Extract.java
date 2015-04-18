@@ -6,13 +6,14 @@ import java.io.*;
 
 
 
-class Extract {
-    
+class Extract implements CharSequence {
+
     // data
     Object source;
     int offset;
     int length;
     
+    @Override
     public int length() {
         return length;
     }
@@ -33,14 +34,16 @@ class Extract {
             offset += off+1;
             length -= off+1;
         }
-        FileReader f = new FileReader(null);
-        File fd;
+        return null;
+    }
+
+    @Override
+    public char charAt(int index) {
+        return '\0';
     }
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
-    
-    
 }
