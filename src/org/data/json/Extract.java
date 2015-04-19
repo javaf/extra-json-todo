@@ -2,8 +2,9 @@
 package org.data.json;
 
 // required modules
+import java.util.*;
 import java.io.*;
-import java.nio.charset.Charset;
+
 
 
 /*
@@ -17,7 +18,7 @@ Extract should be able to perform additions, and deletions
 class Extract implements CharSequence {
     
     // data
-    BufferedReader buff;
+    RandomAccessFile file;
     final Object origin;
     final long offset;
     final int length;
@@ -25,48 +26,52 @@ class Extract implements CharSequence {
     
     
     // read bytes from file
-    private static byte[] readFile(File file, long offset, int length) {
-        RandomAccessFile fread = null;
-        try {
-            fread = new RandomAccessFile(file, "r");
-            fread.seek(offset);
-            byte[] data = new byte[length];
-            fread.read(data);
-            fread.close();
-            return data;
-        }
-        catch(Exception e) {
-            try { if(fread != null) fread.close(); }
-            catch(Exception ex) {}
-            throw new RuntimeException(e);
-        }
+    private static byte[] readFromFile(RandomAccessFile file, long offset, int length) throws IOException {
+        file.seek(offset);
+        byte[] data = new byte[length];
+        file.read(data);
+        return data;
+    }
+    
+    private static void deleteFromFile(Collection<Extract> coll) {
+        
     }
     
     
-    // remove bytes from file
-    private static void fileRemove(File file, long offset, int length) {
-        RandomAccessFile fread = null;
-        try {
-            fread = new RandomAccessFile(file, "r");
-            fread.seek(offset);
-            byte[] data = new byte[length];
-            fread.read(data);
-            fread.close();
-            return data;
-        }
-        catch(Exception e) {
-            try { if(fread != null) fread.close(); }
-            catch(Exception ex) {}
-            throw new RuntimeException(e);
-        }
-    }
-    
-    
-    // create extract from a given object
-    public Extract(Object origin, int start, int end) {
+    // create extract
+    public Extract(Object origin, long offset, int length) {
         this.origin = origin;
-        this.start = start;
-        this.end = end;
+        this.offset = offset;
+        this.length = length;
+    }
+    
+    
+    // get length of extract
+    @Override
+    public int length() {
+        return length;
+    }
+
+    
+    
+    @Override
+    public char charAt(int index) {
+        return '\0';
+    }
+
+    
+    // get a smaller extract
+    @Override
+    public Extract subSequence(int start, int end) {
+        return new Extract(origin, this.offset+start, end-start);
+    }
+    
+    
+    @Override
+    public String toString() {
+        if(value != null) return value;
+        if(origin instanceof CharSequence) return ((CharSequence)origin).subSequence((int)offset, (int)offset+length).toString();
+        return null;
     }
     
     
@@ -80,31 +85,5 @@ class Extract implements CharSequence {
     // get the value of extract
     public String get() {
         return (value = toString());
-    }
-    
-    
-    // get length of extract
-    @Override
-    public int length() {
-        return end - start;
-    }
-
-    
-    
-    @Override
-    public char charAt(int index) {
-        return '\0';
-    }
-
-    @Override
-    public Extract subSequence(int start, int end) {
-        return new Extract(origin, this.start+start, this.start+end);
-    }
-    
-    @Override
-    public String toString() {
-        if(value != null) return value;
-        if(origin instanceof CharSequence) return ((CharSequence)origin).subSequence(start, end).toString();
-        if(origin instanceof File) return File
     }
 }

@@ -9,8 +9,14 @@ import java.util.*;
 public class Jap extends HashMap<String, Object> {
     
     // data
-    Extract unparsed;
-    // additions, deletions
+    StringBuilder unparsed;
+    Set<String> additions, deletions;
+    
+    private void parse() {
+        for(int i=0; i<unparsed.charAt(i); i++) {
+            
+        }
+    }
     
     public Jap() {
         super();
@@ -21,7 +27,7 @@ public class Jap extends HashMap<String, Object> {
     }
     
     public Jap(String s) {
-        
+        unparsed = new StringBuilder(s);
     }
     
     @Override
