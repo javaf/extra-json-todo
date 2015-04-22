@@ -3,7 +3,7 @@ package org.data.json;
 
 
 
-class Extract implements CharSequence {
+class Part implements CharSequence {
     
     // data
     final Object origin;
@@ -13,7 +13,7 @@ class Extract implements CharSequence {
     
     
     // create extract
-    public Extract(Object origin, long offset, int length) {
+    public Part(Object origin, long offset, int length) {
         this.origin = origin;
         this.offset = offset;
         this.length = length;
@@ -21,7 +21,7 @@ class Extract implements CharSequence {
     
     
     // set the value of extract
-    public Extract set(String value) {
+    public Part set(String value) {
         this.value = value;
         return this;
     }
@@ -50,8 +50,8 @@ class Extract implements CharSequence {
     
     // get a smaller extract
     @Override
-    public Extract subSequence(int start, int end) {
-        return new Extract(origin, this.offset+start, end-start);
+    public Part subSequence(int start, int end) {
+        return new Part(origin, this.offset+start, end-start);
     }
     
     
