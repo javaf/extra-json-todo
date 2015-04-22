@@ -15,15 +15,45 @@ public class Jap extends HashMap<String, Object> {
     
     
     // http://web.cerritos.edu/jwilson/SitePages/java_language_resources/Java_Escape_Sequences.htm
-    private char parseEscapeSequence(Extract text) {
+    private JapParseToken parseEscapeSequence(Extract text) {
+        Character ans = null;
+        char c = text.charAt(1);
+        switch(c) {
+            case 'n':
+                ans = '\n';
+                break;
+            case 't':
+                ans = '\t';
+                break;
+            case 'b':
+                ans = '\b';
+                break;
+            case 'f':
+                ans = '\f';
+                break;
+            case 'r':
+                ans = '\r';
+                break;
+            case '\"':
+                ans = '\"';
+                break;
+            case '\'':
+                ans = '\'';
+                break;
+            case '\\':
+                ans = '\\';
+                break;
+        }
+        
+        if(c == 'n') ans = '\n';
+        if(c == 't') ans = '\n';
+        if(c == 'b') ans = '\n';
+        if(c == 'f') ans = '\n';
+        if(c == 'r') return new JapParseToken('\r', 2);
+        if(c == '\"') return new JapParseToken('\"', 2);
+        if(c == '\'') return new JapParseToken('\'', 2);
+        if(c == '\\') return new JapParseToken('\\', 2);
         for(int i=1; i<text.length(); i++) {
-            char c = text.charAt(i);
-            if(c == 'n') return '\n';
-            if(c == 't') return '\t';
-            if(c == 'b') return '\b';
-            if(c == 'f') return '\f';
-            if(c == 'r') return '\r';
-            
         }
         return '\0';
     }
