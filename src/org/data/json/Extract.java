@@ -1,20 +1,8 @@
 // @wolfram77
 package org.data.json;
 
-// required modules
-import java.util.*;
-import java.io.*;
 
 
-
-/*
-Extract should be able to perform additions, and deletions
-(static) For a given object(file) and a list of delection pos, len
-(static) For a given object(file) and a list of addition pso, values
-(stream) scan and dump in output, unless change required
-*/
-// String, StringBuilder/Buffer, File, InputStream
-// StringBuilder/Buffer, File, OutputStream
 class Extract implements CharSequence {
     
     // data
@@ -22,19 +10,6 @@ class Extract implements CharSequence {
     final long offset;
     final int length;
     String value;
-    
-    
-    // read bytes from file
-    private static byte[] readFromFile(RandomAccessFile file, long offset, int length) throws IOException {
-        file.seek(offset);
-        byte[] data = new byte[length];
-        file.read(data);
-        return data;
-    }
-    
-    private static void deleteFromFile(Collection<Extract> coll) {
-        
-    }
     
     
     // create extract
@@ -45,19 +20,33 @@ class Extract implements CharSequence {
     }
     
     
+    // set the value of extract
+    public Extract set(String value) {
+        this.value = value;
+        return this;
+    }
+    
+    
+    // get the value of extract
+    public String get() {
+        return (value = toString());
+    }
+    
+    
     // get length of extract
     @Override
     public int length() {
         return length;
     }
-
     
     
+    // get character
     @Override
     public char charAt(int index) {
-        return '\0';
+        if(value != null) return value.charAt(index);
+        return ((CharSequence)origin).charAt((int)offset+index);
     }
-
+    
     
     // get a smaller extract
     @Override
@@ -69,20 +58,6 @@ class Extract implements CharSequence {
     @Override
     public String toString() {
         if(value != null) return value;
-        if(origin instanceof CharSequence) return ((CharSequence)origin).subSequence((int)offset, (int)offset+length).toString();
-        return null;
-    }
-    
-    
-    // set the value of extract
-    public Extract set(String value) {
-        this.value = value;
-        return this;
-    }
-
-    
-    // get the value of extract
-    public String get() {
-        return (value = toString());
+        return ((CharSequence)origin).subSequence((int)offset, (int)offset+length).toString();
     }
 }
