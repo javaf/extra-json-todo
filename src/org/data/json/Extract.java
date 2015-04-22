@@ -55,6 +55,7 @@ class Extract implements CharSequence {
     }
     
     
+    // convert to string
     @Override
     public String toString() {
         if(value != null) return value;

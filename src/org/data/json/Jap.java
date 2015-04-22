@@ -9,10 +9,36 @@ import java.util.*;
 public class Jap extends HashMap<String, Object> {
     
     // data
-    StringBuilder unparsed;
-    Set<String> additions, deletions;
+    Deque<Object> state;
+    Extract unparsed;
+    Object object;
     
-    private void parse() {
+    
+    // http://web.cerritos.edu/jwilson/SitePages/java_language_resources/Java_Escape_Sequences.htm
+    private char parseEscapeSequence(Extract text) {
+        for(int i=1; i<text.length(); i++) {
+            char c = text.charAt(i);
+            if(c == 'n') return '\n';
+            if(c == 't') return '\t';
+            if(c == 'b') return '\b';
+            if(c == 'f') return '\f';
+            if(c == 'r') return '\r';
+            
+        }
+        return '\0';
+    }
+    
+    private String parseString() {
+        char start = unparsed.charAt(0);
+        for(int i=1; i<unparsed.length(); i++) {
+            char c = unparsed.charAt(i);
+            if(c=='\\')
+        }
+        return null;
+    }
+    
+    
+    private void parseTill() {
         for(int i=0; i<unparsed.length(); i++) {
             
         }
@@ -27,7 +53,6 @@ public class Jap extends HashMap<String, Object> {
     }
     
     public Jap(String s) {
-        unparsed = new StringBuilder(s);
     }
     
     @Override
