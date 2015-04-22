@@ -18,7 +18,6 @@ Extract should be able to perform additions, and deletions
 class Extract implements CharSequence {
     
     // data
-    RandomAccessFile file;
     final Object origin;
     final long offset;
     final int length;
