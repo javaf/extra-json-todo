@@ -44,18 +44,8 @@ public class Jap extends HashMap<String, Object> {
                 ans = '\\';
                 break;
         }
-        
-        if(c == 'n') ans = '\n';
-        if(c == 't') ans = '\n';
-        if(c == 'b') ans = '\n';
-        if(c == 'f') ans = '\n';
-        if(c == 'r') return new JapParseToken('\r', 2);
-        if(c == '\"') return new JapParseToken('\"', 2);
-        if(c == '\'') return new JapParseToken('\'', 2);
-        if(c == '\\') return new JapParseToken('\\', 2);
-        for(int i=1; i<text.length(); i++) {
-        }
-        return '\0';
+        if(ans != null) return new JapParseToken(ans, 2);
+        if(c != 'u' || text.length() < 6) return null;
     }
     
     private String parseString() {
