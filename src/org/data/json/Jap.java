@@ -10,44 +10,8 @@ public class Jap extends HashMap<String, Object> {
     
     // data
     Deque<Object> state;
-    Part unparsed;
+    Text unparsed;
     Object object;
-    
-    
-    // http://web.cerritos.edu/jwilson/SitePages/java_language_resources/Java_Escape_Sequences.htm
-    private ParseToken parseEscapeSequence(Part text) {
-        Character ans = null;
-        char c = text.charAt(1);
-        switch(c) {
-            case 'n':
-                ans = '\n';
-                break;
-            case 't':
-                ans = '\t';
-                break;
-            case 'b':
-                ans = '\b';
-                break;
-            case 'f':
-                ans = '\f';
-                break;
-            case 'r':
-                ans = '\r';
-                break;
-            case '\"':
-                ans = '\"';
-                break;
-            case '\'':
-                ans = '\'';
-                break;
-            case '\\':
-                ans = '\\';
-                break;
-        }
-        if(ans != null) return new ParseToken(ans, 2);
-        if(c != 'u' || text.length() < 6) return null;
-        return null;
-    }
     
     private String parseString() {
         char start = unparsed.charAt(0);
