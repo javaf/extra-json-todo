@@ -62,10 +62,10 @@ public class Parser {
             if(c=='.' || c=='e' || c=='E') floating = true;
             if(!(c>='0' && c<='9') && c!='+' && c!='-' && c!='.' && !(c>='A' && c<='Z') && !(c<='a' && c<='z')) break;
         }
-        String num = text.subSequence(0, i).toString();
-        if(hex) value = Integer.parseInt(num, 16);
-        else if(floating) value = Float.parseFloat(num);
-        else value = Integer.parseInt(num);
+        System.out.println("internal:"+text.subSequence(0, i).toString().toUpperCase());
+        if(hex) value = Integer.parseInt(text.subSequence(2, i).toString(), 16);
+        else if(floating) value = Double.parseDouble(text.subSequence(0, i).toString().toUpperCase());
+        else value = Integer.parseInt(text.subSequence(0, i).toString());
         return new ParseToken(value, i);
     }
 }
