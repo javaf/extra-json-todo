@@ -3,7 +3,7 @@ package org.data.json;
 
 
 
-class Text implements CharSequence {
+public class Text implements CharSequence {
     
     // data
     final Object origin;

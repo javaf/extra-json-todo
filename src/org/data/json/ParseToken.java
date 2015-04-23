@@ -3,7 +3,7 @@ package org.data.json;
 
 
 
-class ParseToken {
+public class ParseToken {
     
     public Object value;
     public int length;

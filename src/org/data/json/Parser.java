@@ -3,10 +3,13 @@ package org.data.json;
 
 
 
-class Parser {
-
+public class Parser {
     
-    
+    /**
+     * Parse an escape sequence text.
+     * @param text starts with '\'
+     * @return parse token
+     */
     public ParseToken escSeq(Text text) {
         Character ans = null;
         char c = text.charAt(1);
@@ -35,10 +38,12 @@ class Parser {
             case '\\':
                 ans = '\\';
                 break;
+            case 'u':
+                if(text.length() < 6) break;
+                ans = (char)Integer.parseInt(text.subSequence(2, 6).toString(), 16);
+                return new ParseToken(ans, 6);
         }
         if(ans != null) return new ParseToken(ans, 2);
-        if(c != 'u' || text.length() < 6) return null;
         return null;
     }
-    
 }
