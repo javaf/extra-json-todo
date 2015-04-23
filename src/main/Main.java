@@ -9,10 +9,10 @@ import org.data.json.*;
 public class Main {
     
     public static void main(String[] args) {
-        Text text = new Text("\\uabcd", 0, 6);
+        Text text = new Text("0x11                 ", 0, 15);
         System.out.println("text = "+text);
         Parser parser = new Parser();
-        ParseToken token = parser.escSeq(text);
+        ParseToken token = parser.number(text);
         System.out.println("token = "+token);
     }
 }
