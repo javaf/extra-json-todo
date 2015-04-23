@@ -35,7 +35,7 @@ public class ParseToken {
     @Override
     public String toString() {
         StringBuilder ans = new StringBuilder("{value=");
-        ans.append(value).append(", length=").append(length).append(length).append("}");
+        ans.append(value).append(", length=").append(length).append("}");
         return ans.toString();
     }
 }
