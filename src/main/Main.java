@@ -2,45 +2,34 @@
 package main;
 
 // required modules
-import java.util.*;
+import org.data.json.*;
 
 
 
 public class Main {
     
     public static void main(String[] args) {
-        mapSpeed();
-        listSpeed();
-        arraySpeed();
-    }
-    
-    public static void mapSpeed() {
-        Map<Integer, Integer> map = new HashMap<>();
-        long start = System.nanoTime();
-        for(int i=0; i<10000; i++) {
-            map.put(i, i+1);
-        }
-        long end = System.nanoTime();
-        System.out.println("map: "+((end-start)*Math.pow(10, -6))+"ms");
-    }
-    
-    public static void listSpeed() {
-        List<Object> list = new ArrayList<>();
-        long start = System.nanoTime();
-        for(int i=0; i<10000; i++) {
-            list.add(new org.data.json.ParseToken(null, i));
-        }
-        long end = System.nanoTime();
-        System.out.println("list: "+((end-start)*Math.pow(10, -6))+"ms");
-    }
-    
-    public static void arraySpeed() {
-        Object[] array = new Object[10000];
-        long start = System.nanoTime();
-        for(int i=0; i<10000; i++) {
-            array[i] = new org.data.json.ParseToken(null, i);
-        }
-        long end = System.nanoTime();
-        System.out.println("array: "+((end-start)*Math.pow(10, -6))+"ms");
+        Jist jist = new Jist();
+        System.out.println(jist);
+        jist.add(null);
+        System.out.println(jist);
+        jist.add(false);
+        System.out.println(jist);
+        jist.add(1);
+        System.out.println(jist);
+        jist.add("1");
+        System.out.println(jist);
+        Jap jap = new Jap();
+        System.out.println(jap);
+        jap.put("0", null);
+        System.out.println(jap);
+        jap.put("1", false);
+        System.out.println(jap);
+        jap.put("2", 1);
+        System.out.println(jap);
+        jap.put("3", "1");
+        System.out.println(jap);
+        jap.put("4", new Jist());
+        System.out.println(jap);
     }
 }
