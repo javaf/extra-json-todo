@@ -3,6 +3,7 @@ package org.data.json;
 
 // required modules
 import java.util.*;
+import java.io.*;
 
 
 
@@ -13,20 +14,17 @@ public class Jap extends HashMap<String, Object> {
     Text unparsed;
     Object object;
     
-    private String parseString() {
-        char start = unparsed.charAt(0);
-        for(int i=1; i<unparsed.length(); i++) {
-            char c = unparsed.charAt(i);
-        }
-        return null;
-    }
     
-    
-    private void parseTill() {
-        for(int i=0; i<unparsed.length(); i++) {
-            
+    private void parseFast(String in) {
+        String state = "default";
+        switch(state) {
+            case "default":
+                break;
+            case "property":
+                break;
         }
     }
+    
     
     public Jap() {
         super();
