@@ -19,6 +19,8 @@ public class Main {
         System.out.println(jist);
         jist.add("1");
         System.out.println(jist);
+        jist.add(new Jap());
+        System.out.println(jist);
         Jap jap = new Jap();
         System.out.println(jap);
         jap.put("0", null);
