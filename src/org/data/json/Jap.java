@@ -39,14 +39,25 @@ public class Jap extends HashMap<String, Object> {
     
     @Override
     public String toString() {
-        StringBuilder ans = new StringBuilder("{");
-        for(Map.Entry<String, Object> o : entrySet()) {
-            ans.append('\"').append(o.getKey()).append("\":");
-            if(!(o.getValue() instanceof CharSequence)) ans.append(o.getValue());
-            else ans.append("\"").append(o.getValue()).append("\"");
-            ans.append(",");
+        StringBuilder ans = new StringBuilder();
+        try {
+            serialize(ans);
+            return ans.toString();
         }
-        if(ans.length() > 1) ans.setLength(ans.length()-1);
-        return ans.append("}").toString();
+        catch(IOException e) { throw new RuntimeException(e); }
+    }
+    
+    void serialize(Appendable out) throws IOException {
+        out.append('{');
+        Set<Map.Entry<String, Object>> entrySet = entrySet();
+        int i = 0, end = entrySet.size() - 1;
+        for(Map.Entry<String, Object> o : entrySet) {
+            out.append('\"').append(o.getKey()).append("\":");
+            if(!(o.getValue() instanceof CharSequence)) out.append(o.getValue().toString());
+            else out.append('\"').append((CharSequence)o.getValue()).append('\"');
+            if(i != end) out.append(',');
+            i++;
+        }
+        out.append('}');
     }
 }

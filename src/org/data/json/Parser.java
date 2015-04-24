@@ -1,6 +1,10 @@
 // @wolfram77
 package org.data.json;
 
+// required modules
+import java.util.*;
+import java.io.*;
+
 
 
 public class Parser {
@@ -67,5 +71,25 @@ public class Parser {
         else if(floating) value = Double.parseDouble(text.subSequence(0, i).toString().toUpperCase());
         else value = Integer.parseInt(text.subSequence(0, i).toString());
         return new ParseToken(value, i);
+    }
+    
+    private static void property(Reader in) {
+        
+    }
+    
+    public static void parse(Map<String, Object> out, String in) {
+        String state = "value";
+        for(int i=0; i<in.length(); i++) {
+            char c = in.charAt(i);
+            switch(state) {
+                case "value":
+                    if(c <= ' ') state = "value";
+                    else if(c == '\'') state = "value-string1-start";
+                    else if(c == '\"') state = "value-string2-start";
+                    else state = "value-start";
+                    break;
+                case "":
+            }
+        }
     }
 }
