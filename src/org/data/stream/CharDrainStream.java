@@ -7,29 +7,29 @@ import java.nio.charset.*;
 
 
 
-public class CharDrain extends BufferedWriter {
+public class CharDrainStream extends BufferedWriter {
     
-    public CharDrain(Writer out) {
+    public CharDrainStream(Writer out) {
         super(out);
     }
     
-    public CharDrain(OutputStream out, CharsetEncoder enc) {
+    public CharDrainStream(OutputStream out, CharsetEncoder enc) {
         super(new OutputStreamWriter(out, enc));
     }
     
-    public CharDrain(OutputStream out, Charset cs) {
+    public CharDrainStream(OutputStream out, Charset cs) {
         super(new OutputStreamWriter(out, cs));
     }
     
-    public CharDrain(OutputStream out) {
+    public CharDrainStream(OutputStream out) {
         super(new OutputStreamWriter(out));
     }
     
-    public CharDrain(File out, Charset cs) throws FileNotFoundException {
+    public CharDrainStream(File out, Charset cs) throws FileNotFoundException {
         super(new OutputStreamWriter(new FileOutputStream(out), cs));
     }
     
-    public CharDrain(File out) throws FileNotFoundException {
+    public CharDrainStream(File out) throws FileNotFoundException {
         super(new OutputStreamWriter(new FileOutputStream(out)));
     }
 }

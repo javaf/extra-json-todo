@@ -68,3 +68,4 @@ public class Jap extends HashMap<String, Object> implements Json {
         return out.append('}');
     }
 }
+// the core need of the parse
